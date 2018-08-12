@@ -1,0 +1,193 @@
+	
+	Servlet
+
+1、客户端通过HTTP提出请求
+2、web服务器将它加载到java虚拟机并执行它
+3、Servle程序将接受该HTTP请求并执行某种处理
+4、Servlet会将处理后的结果向web服务器返回应答
+5、web服务器将从Servlet收到的应答发回客户端
+
+
+	Filter
+
+1、在servlet被调用之前截获 ，在servler调用之前检查servlet request
+2、修改response头和respnse数据，在servlet被调用之后截获。
+
+	
+	Listener
+
+1、创建监听器    销毁
+
+
+	jstl
+
+1、标准标签库
+
+核心标签
+<c:out>用于在JSP中显示数据，就像<%= ... >
+<c:set>	用于保存数据
+<c:remove>用于删除数据
+<c:if>我们在一般程序中用的if一样 循环
+<c:when><c:choose>的子标签，用来判断条件是否成立
+<c:forEach>基础迭代标签，接受多种集合类型
+<c:param>用来给包含或重定向的页面传递参数
+<c:url>使用可选的查询参数来创造一个URL
+
+
+格式化标签
+
+
+sql标签
+
+xml标签
+
+jstl函数
+<fn；contains()>测试输入的字符串是否包含指定的子串
+<fn:indexOf()>返回指定字符串在输入字符串中出现的位置
+<fn:split()>将字符串指定的分隔符然后组成一个子字符串数组返回
+<fn:length()>返回字符串长度
+<fn:substring()>返回字符串的子集
+<fn:trim()>移除首位的空白符
+
+什么是解耦？
+对项目划分为多个模块这种做法你有什么看法？ 优势？劣势？有哪些？
+
+看法：可维护性  架包可以分开导入、找错误代码容易，因为他们互不影响 可维护性好
+
+	
+	http请求是无状态的	(cookie会话跟踪：俗语:让服务器记住是同一个请求)
+	
+	http协议：服务器把html源码传给浏览器，浏览器响应给客户用户。
+
+	
+	
+	reqest.setCharacterEnconding("utf-8");
+	设置请求编码格式是("utf-8")中文格式
+	
+	
+	response.setCharacterEnconding("utf-8");
+
+	response.getWriter().print();
+	响应输出
+	
+
+	response.setContenType("text/html;charset=utf-8");
+	服务器传给浏览器，浏览器响应到客户，只是不显示在页面
+		
+
+类似于alxs
+	fetch("项目路径",
+	{
+		method:'get'
+	}).then(function(resp){
+		resp.text().then(function(value){
+		console.log(value);
+	})
+	})
+
+
+
+  8月11号
+
+  equals/==的区别：
+
+值类型是存储在堆栈中（简称栈），而应用类型的变量在栈
+中仅仅是存储引用类型变量的地址，而其本身则存存储在堆中。
+
+ ==：比较的是两个变量的值是否相等。引用类型变量表示
+在堆中存储的地址是否相同（内容是否相同）
+
+ equals：两个变量是否是对同一个对象的引用（堆中内容是否相同）
+
+ ==比较的 是2个对象的地址，而equals比较的是2个对象那个的内容。
+
+String a=g;
+new String("g");
+String b=a;
+String c=g;
+
+a.equlas("c")
+a==b true
+
+
+
+	StringBuffer/StringBuilder/String 的区别
+
+StringBuffer 字符串变量（线程安全）
+StringBuilder 字符串变量（非线程安全）
+
+Strung和StringBuffer主要区别：
+String是不可变的对象，因此在每次对String类型进行改变
+的时候都等同生成了一个新的String对象，然后指针指向新的String对象， 所以经常改变内容的
+字符串，最好不用String 。
+
+可变
+使用StringBuffer结果相反，它只是对本身进行操作，而不是生成新的
+对象，再改变对象引用。主要操作是 append 和 insert 方法。
+
+例如：
+   String s1="ABC"+"EFG";(String的速度比StringBuffer快)
+
+   String s2="ABC";
+   String s3="EFG";
+   String s1="s2"+"s3";(String的速度比StringBuffer慢)
+
+
+java.lang.StringBuilde
+一个可变的字符序列是5.0新增的。此类提供一个与 StringBuffer 兼容的 API，但不保证同步
+
+
+
+Ajax:允许浏览器与服务器通信而无需刷新页面的技术。
+
+不用刷新整个页面便可与服务器通讯的办法：
+A：Flash
+B：java applet
+C，XMLHttpRequest：该对象是对 JavaScript的一个扩展，可使网页与服务器进行通信.
+
+缺点：
+1、测试针对各个浏览器的兼容器性。
+2、网页的后退功能是失效的。
+3、一些手持设备（如手机、PDA等）现在还不能很好的支持Ajax。
+
+
+ XMLHttpRequest对象
+
+方法：
+abort()		停止当前请求
+getAllResponseHeaders()		把Http请求的所有响应收不作为键值对返回
+open("mothod","url")	第一参数method：get，post。url：可以是相对URL或者是绝对URL		
+send(centent)		向服务器发送请求
+setRequestHeader("label","value")	把指定首部设置为提供的值。必须先调用open()
+
+
+属性：
+onreadystatechange	状态改变的事件触发器
+readyState		对象状态（integer）:0=未初始化，1=读取中，2=已读取，3=交互中，4=完成
+responseText		服务器进程返回数据的文本版本
+responseXML		返回数据的兼容DMO的文档对象
+status			返回状态码，如：404未找到文件，200成功
+statusText		返回状态文本信息
+
+
+XMLHttpRequest对成功返回的信息有两种处理方式：
+
+1，responseText：将传回的信息当字符串使用；
+
+2，responseXML：将传回的信息当XML文档使用，可以用DOM处
+
+
+数据格式
+XML,JSON,HTML。
+
+
+
+
+
+
+
+
+
+
+
+
